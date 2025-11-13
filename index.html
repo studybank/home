@@ -120,6 +120,52 @@
       margin-top: 40px;
     }
   </style>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .slideshow-container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      height: 450px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 1s ease-in-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide.prev {
+      transform: translateX(-100%);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  </style>
 </head>
 <body>
   <header>
@@ -165,6 +211,42 @@
       </div>
     </div>
   </div>
+  <!-- Main Content -->
+  <div class="main-content">
+  </div>
+  <div class="slideshow-container">
+    <div class="slide active">
+      <img src="photo1.jpg" alt="Photo 1">
+    </div>
+    <div class="slide">
+      <img src="photo2.jpg" alt="Photo 2">
+    </div>
+    <div class="slide">
+      <img src="photo3.jpg" alt="Photo 3">
+    </div>
+    <div class="slide">
+      <img src="photo4.jpg" alt="Photo 4">
+    </div>
+    <div class="slide">
+      <img src="photo5.jpg" alt="Photo 5">
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    function showSlide(nextIndex) {
+      slides[current].classList.remove('active');
+      slides[nextIndex].classList.add('active');
+      current = nextIndex;
+    }
+
+    setInterval(() => {
+      const next = (current + 1) % slides.length;
+      showSlide(next);
+    }, 5000); // हर 5 सेकंड में फोटो बदलेगी
+  </script>
 
   <div class="login-section">
     <h2>Login</h2>
@@ -184,5 +266,6 @@
 
 </body>
 </html>
+
 
 
