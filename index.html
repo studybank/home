@@ -2,276 +2,314 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1 .0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📖School Department🏠</title>
-<meta name="description" content="This Website Designed by SANJEEV BONDA ---- Only Education Purpose">
-<meta name="keywords" content="sanjeev website, github project, photo slideshow, mca, html website">
-<meta name="author" content="Sanjeev Bonda">
-<meta name="robots" content="index, follow">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #b9f7a1;
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
 
-    header {
-      background-color: #d61a13d3;
-      color: rgb(56, 218, 7);
-      padding: 1px;
-      text-align: center;
-    }
-    header img {
-      width: 100px;
-      height: 100px;
-      vertical-align: left;
-    }   
+<style>
+/* RESET */
+*{
+  margin:0; padding:0; box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+body{
+  background:#b9f7a1;   /* Your ORIGINAL background color */
+}
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      background-color: #005599;
-    }
+/* ------------------------------------------------------- */
+/* HEADER */
+/* ------------------------------------------------------- */
 
-    nav a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      display: inline-block;
-    }
+header{
+  background:#d61a13d3; /* Your original red color */
+  padding:15px;
+  text-align:center;
+  position:relative;
+  animation:fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(-20px);}
+  to{opacity:1; transform:translateY(0);}
+}
 
-    nav a:hover {
-      background-color: #0077cc;
-    }
+header .logo-box{
+  position:absolute;
+  left:10px; top:10px;
+}
+header img{
+  width:85px;height:85px;border-radius:10px;
+  box-shadow:0 0 10px #00000050;
+}
 
-    .main {
-      padding: 30px;
-      text-align: center;
-    }
+header h1{
+  font-family:"Merriweather",serif;
+  font-size:27px;
+  font-weight:700;
+  color:rgb(56, 218, 7);  /* Your original green text */
+  margin-bottom:3px;
+}
+header p{color:white;}
 
-    .main h2 {
-      color: #003366;
-    }
+/* ------------------------------------------------------- */
+/* NAV + HAMBURGER */
+/* ------------------------------------------------------- */
 
-    .cards {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
+nav{
+  background:#005599; /* Your original Blue color */
+  padding:10px;
+  position:relative;
+}
 
-    .card {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      width: 250px;
-      margin: 15px;
-      padding: 20px;
-    }
+nav ul{
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  transition:0.4s;
+  overflow:hidden;
+  max-height:500px;
+}
+nav ul li a{
+  color:white;
+  text-decoration:none;
+  padding:8px 15px;
+  background:#0077cc;
+  border-radius:5px;
+  font-weight:600;
+  display:block;
+  transition:0.3s;
+}
+nav ul li a:hover{
+  background:#00a2ff;
+}
 
-    .card h3 {
-      color: #005599;
-    }
+/* HAMBURGER */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  position:absolute;
+  right:15px;
+  top:10px;
+}
+.hamburger div{
+  width:30px;height:4px;background:white;
+  margin:5px;border-radius:5px;
+  transition:0.3s;
+}
 
-    .login-section {
-      background-color: #ffffff;
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 10px;
-    }
+/* ANIMATION WHEN ACTIVE */
+.hamburger.active div:nth-child(1){
+  transform:rotate(45deg) translate(6px,6px);
+}
+.hamburger.active div:nth-child(2){
+  opacity:0;
+}
+.hamburger.active div:nth-child(3){
+  transform:rotate(-45deg) translate(6px,-6px);
+}
 
-    .login-section h2 {
-      text-align: center;
-      color: #003366;
-    }
+/* MOBILE MENU */
+@media(max-width:700px){
+  .hamburger{display:flex;}
 
-    .login-section input[type="text"],
-    .login-section input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin: 12px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+  nav ul{
+    flex-direction:column;
+    max-height:0;
+  }
+  nav ul.show{
+    max-height:500px;
+  }
+}
 
-    .login-section input[type="submit"] {
-      background-color: #005599;
-      color: white;
-      border: none;
-      padding: 10px;
-      width: 100%;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+/* ------------------------------------------------------- */
+/* MAIN */
+/* ------------------------------------------------------- */
 
-    .login-section input[type="submit"]:hover {
-      background-color: #0077cc;
-    }
+.main{text-align:center;padding:20px;}
 
-    footer {
-      background-color: #003366;
-      word-wrap: break-word;
-      justify-content: space-around;
-      color: white;
-      text-align: center;
-      font-size: 14px;
-      position: relative;
-      box-sizing: border-box;
-      padding: 10px;
-      margin-top: 40px;
-    }
-  </style>
-  <style>
-    .slideshow-container {
-      position: relative;
-      width: 80%;
-      max-width: 800px;
-      height: 450px;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      /* 👇👇👇 यह 3 लाइनें जोड़ दें 👇👇👇 */
-  margin: 0 auto;         /* पेज के बीच में लाने के लिए */
-  display: block;         /* यह margin:auto को काम करने देगा */
-  text-align: center;     /* (optional) अंदर की चीजें center हों */
-    }
+.main h1 a{color:#003366;text-decoration:none;font-weight:700;}
 
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transform: translateX(100%);
-      transition: all 1s ease-in-out;
-    }
+.cards{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:20px;margin-top:20px;
+}
+.card{
+  background:white;
+  width:250px;padding:20px;border-radius:12px;
+  box-shadow:0px 3px 8px rgba(0,0,0,0.2);
+  transition:0.3s;
+}
+.card:hover{
+  transform:translateY(-7px);
+}
+.card h3{color:#005599;}
 
-    .slide.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
+/* ------------------------------------------------------- */
+/* SLIDESHOW WITH ARROWS */
+/* ------------------------------------------------------- */
 
-    .slide.prev {
-      transform: translateX(-100%);
-    }
+.slideshow-container{
+  position:relative;width:90%;max-width:800px;
+  height:260px;margin:30px auto;border-radius:15px;
+  overflow:hidden;box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      vertical-align: center;
-    }
+.slide{
+  position:absolute;width:100%;height:100%;
+  opacity:0;transition:opacity 1s;
+}
+.slide.active{opacity:1;}
+.slide img{width:100%;height:100%;object-fit:cover;}
 
-  </style>
+.arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-size:30px;color:white;padding:10px 14px;
+  background:#00000055;border-radius:50%;
+  cursor:pointer;user-select:none;
+}
+.left{left:10px;}
+.right{right:10px;}
+.arrow:hover{background:#00000099;}
+
+/* ------------------------------------------------------- */
+/* LOGIN */
+/* ------------------------------------------------------- */
+
+.login-section{
+  background:white;width:90%;max-width:400px;
+  padding:25px;margin:40px auto;border-radius:12px;
+  box-shadow:0px 3px 12px rgba(0,0,0,0.2);
+}
+.login-section input{
+  width:100%;padding:10px;margin:10px 0;border-radius:5px;
+  border:1px solid #aaa;
+}
+.login-section input[type="submit"]{
+  background:#005599;color:white;border:none;
+  font-weight:600;cursor:pointer;
+}
+.login-section input[type="submit"]:hover{
+  background:#0077cc;
+}
+
+/* ------------------------------------------------------- */
+/* FOOTER */
+/* ------------------------------------------------------- */
+
+footer{
+  background:#003366;color:white;text-align:center;
+  padding:15px;margin-top:40px;font-size:14px;
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <a href="https://studybank.github.io/home/" style="float: left ; display: inline-block;">
-      <img src="126vv.png" alt="StudyBank logo" width="100" height="100" style="display: block;">
-      </a>
-   <textalign="center" ><h1><B>GOVT. H. S. SCHOOL BAMHORI KALAN </B></h1></text> 
-    <p>Empowering Future Through Quality Education</p>
-   
-  </header>
 
-  <nav>
-    <a href="https://studybank.github.io/home/">Home</a>
-    <a href="https://studybank.github.io/admission/">Admission</a>
-    <a href="https://studybank.github.io/result/">Result</a>
-    <a href="#">Faculty</a>
-    <a href="#">Courses</a>
-    <a href="https://studybank.github.io/events/">Events</a>
-    <a href="https://sites.google.com/view/ghssbamhorikalans/contect-us?authuser=0">Contact</a>
-  </nav>
-
-  <div class="main">
-    <h1><a href="https://studybank.github.io/whatsapp/">Whatsapp ग्रुप मे जुडने के लिए यहाँ क्लिक करें </a></h1>
-    <h2>About Our Department</h2>
-    <p>We provide academic excellence, skilled faculty, and a vibrant learning environment to shape the future of our students.</p>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Our Faculty</h3>
-        <p>Meet our experienced and dedicated teaching staff.</p>
-      </div>
-      <div class="card">
-        <h3>Vocational Courses</h3>
-        <p>Explore a wide range of subjects and programs we offer.</p>
-      </div>
-      <div class="card">
-        <h3>Upcoming Events</h3>
-        <p>Stay updated with seminars, competitions, and workshops.</p>
-      </div>
-      <div class="card">
-        <h3>Contact Us</h3>
-        <p>Get in touch with us for inquiries or support.</p>
-      </div>
-    </div>
+<!-- =================== HEADER ========================= -->
+<header>
+  <div class="logo-box">
+    <img src="126vv.png" alt="School Logo">
   </div>
-  <!-- Main Content -->
-  <div class="main-content">
-  </div>
-  <div class="slideshow-container">
-    <div class="slide active">
-      <img src="photo1.jpg" alt="Photo 1">
-    </div>
-    <div class="slide">
-      <img src="photo2.jpg" alt="Photo 2">
-    </div>
-    <div class="slide">
-      <img src="photo3.jpg" alt="Photo 3">
-    </div>
-    <div class="slide">
-      <img src="photo4.jpg" alt="Photo 4">
-    </div>
-    <div class="slide">
-      <img src="photo5.jpg" alt="Photo 5">
-    </div>
+  <h1>GOVT. H. S. SCHOOL BAMHORI KALAN</h1>
+  <p>Empowering Future Through Quality Education</p>
+</header>
+
+<!-- =================== NAV + HAMBURGER ========================= -->
+
+<nav>
+  <div class="hamburger" onclick="toggleMenu(this)">
+    <div></div><div></div><div></div>
   </div>
 
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    let current = 0;
+  <ul id="menu">
+    <li><a href="https://studybank.github.io/home/">Home</a></li>
+    <li><a href="https://studybank.github.io/admission/">Admission</a></li>
+    <li><a href="https://studybank.github.io/result/">Result</a></li>
+    <li><a href="#">Faculty</a></li>
+    <li><a href="#">Courses</a></li>
+    <li><a href="https://studybank.github.io/events/">Events</a></li>
+    <li><a href="https://sites.google.com/view/ghssbamhorikalans/contect-us?authuser=0">Contact</a></li>
+  </ul>
+</nav>
 
-    function showSlide(nextIndex) {
-      slides[current].classList.remove('active');
-      slides[nextIndex].classList.add('active');
-      current = nextIndex;
-    }
+<script>
+function toggleMenu(icon){
+  icon.classList.toggle("active");
+  document.getElementById("menu").classList.toggle("show");
+}
+</script>
 
-    setInterval(() => {
-      const next = (current + 1) % slides.length;
-      showSlide(next);
-    }, 4000); // हर 5 सेकंड में फोटो बदलेगी
-  </script>
+<!-- =================== MAIN ========================= -->
 
-  <div class="login-section">
-    <h2>Login</h2>
-    <form action="#" method="post">
-      <input type="text" name="username" placeholder="Enter Username" required>
-      <input type="password" name="password" placeholder="Enter Password" required>
-      <input type="submit" value="Login">
-    </form>
+<div class="main">
+  <h1><a href="https://studybank.github.io/whatsapp/">Whatsapp ग्रुप में जुड़ने के लिए यहाँ क्लिक करें</a></h1>
+
+  <h2>About Our Department</h2>
+  <p>We provide academic excellence and vibrant learning environment.</p>
+
+  <div class="cards">
+    <div class="card"><h3>Our Faculty</h3><p>Experienced staff.</p></div>
+    <div class="card"><h3>Vocational Courses</h3><p>Wide range of subjects.</p></div>
+    <div class="card"><h3>Upcoming Events</h3><p>Seminars & Workshops.</p></div>
+    <div class="card"><h3>Contact Us</h3><p>Reach for support.</p></div>
   </div>
+</div>
 
-  <footer>
-  <pre> 
-    &copy; 2025 StudyBank| All Rights Reserved    
-    <P>Designed By-SANJEEV BONDA(VT)</P>
-    </pre>
-  </footer>
+<!-- =================== SLIDESHOW ========================= -->
+
+<div class="slideshow-container">
+
+  <div class="slide active"><img src="photo1.jpg"></div>
+  <div class="slide"><img src="photo2.jpg"></div>
+  <div class="slide"><img src="photo3.jpg"></div>
+  <div class="slide"><img src="photo4.jpg"></div>
+  <div class="slide"><img src="photo5.jpg"></div>
+
+  <div class="arrow left" onclick="prevSlide()">❮</div>
+  <div class="arrow right" onclick="nextSlide()">❯</div>
+
+</div>
+
+<script>
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove("active"));
+  slides[i].classList.add("active");
+}
+
+function nextSlide(){
+  index=(index+1)%slides.length;
+  showSlide(index);
+}
+function prevSlide(){
+  index=(index-1+slides.length)%slides.length;
+  showSlide(index);
+}
+setInterval(nextSlide,4000);
+</script>
+
+<!-- =================== LOGIN ========================= -->
+
+<div class="login-section">
+  <h2>Login</h2>
+  <form>
+    <input type="text" placeholder="Username" required>
+    <input type="password" placeholder="Password" required>
+    <input type="submit" value="Login">
+  </form>
+</div>
+
+<!-- =================== FOOTER ========================= -->
+
+<footer>
+  © 2025 StudyBank | All Rights Reserved  
+  <p>Designed By - SANJEEV BONDA (VT)</p>
+</footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
